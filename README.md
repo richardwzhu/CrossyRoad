@@ -41,9 +41,16 @@ Provide links to examples of your game idea.  This can be a playable online game
 
 ## Teacher Response ##
 
-Approved | Not approved
+**Approved**
 
-Comments and suggestions
+This is a perfect kind of game for our two-week project.  And I think you CAN implement hopping by using a short little JavaFX transition effect.  For example, when the user presses a direction to go, you can create a mashup of these effects all running at once:
+ - ScaleTransition enlarges the player then returns them back to normal size (lools like it's zooming in then out)
+ - TranslateTransition moves the player by one hop
+ As long as these happen pretty quickly, it will look cool and won't cause too much trouble with collision detection.
+ If you just make the player slide along, it's going to look and feel strange in my opinion.
+ 
+ Otherwise, you game idea is solid as long as it's implemented well.  On another hand, I can see this game falling into an easy-to-code one-screen game that doesn't have much going on.  Just depends on how you approach it.
+ 
 
 ## Class Design and Brainstorm ##
 
