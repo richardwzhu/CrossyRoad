@@ -1,11 +1,15 @@
 import javafx.scene.image.Image;
 
 public class MovingObstacle extends Actor{
+	private double dx;
+	private int num;
 
 	//direction true means going to the right
-	public MovingObstacle(String type, Boolean direction) {
+	public MovingObstacle(String type, Boolean direction, double dx) {
+		this.dx = dx;
+		
 		if(type.equals("car")) {
-			int num = (int)(Math.random() * 3);
+			num = (int)(Math.random() * 3);
 			if(direction) {
 				if(num == 0) {
 					setImage(new Image(getClass().getClassLoader().getResource("resources/car1right.png").toString()));
@@ -42,8 +46,7 @@ public class MovingObstacle extends Actor{
 	
 	@Override
 	public void act(long now) {
-		// TODO Auto-generated method stub
-		
+		move(dx, 0);
 	}
 
 }

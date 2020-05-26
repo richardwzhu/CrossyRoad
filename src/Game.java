@@ -49,18 +49,20 @@ public class Game extends Application {
         BorderPane crossyWorldScene = new BorderPane();
 
         //Create map
-        crossyWorld.add();
+        crossyWorld.addMap();
 
-
+        crossyWorldScene.setCenter(crossyWorld);
+        
         player = new Character(getClass().getClassLoader().getResource("resources/chicken.png").toString());
-        player.setX(200);
-        player.setY(500);
+        player.setX(150);
+        player.setY(stage.getHeight() - 80);
         crossyWorld.add(player);
+        
+        crossyWorld.start();
         
         gameScene = new Scene(crossyWorldScene);
         stage.setScene(gameScene);
         stage.show();
-        
         
     }
 }

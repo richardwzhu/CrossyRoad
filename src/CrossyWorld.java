@@ -35,12 +35,6 @@ public class CrossyWorld extends World{
     	getChildren().add(score);
     	getChildren().add(lives);
 	}
-
-	@Override
-	public void act(long now) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public Score getScore() {
     	return score;
@@ -76,13 +70,58 @@ public class CrossyWorld extends World{
 		this.rate = rate;
 	}
 	
-	public void add() {
+	public void addMap() {
 		map = new ArrayList<Road>();
 		for(int i = 0; i < 15; i++) {
-			map.add(new Road(getWidth(), getHeight()/15));
-			map.get(i).setX(0);
-			map.get(i).setY(i * getHeight()/15);
-			this.add(map.get(i));
+			Road r = new Road();
+			map.add(r);
+			r.setX(0);
+			r.setY(40 * i);
+			this.add(r);
+			if(r.getTerrain().equals("grass")){
+				int numObstacles = (int)(Math.random() * 4) + 1;
+				for(int j = 0; j < numObstacles; j++) {
+					StationaryObstacle s = new StationaryObstacle((int)(Math.random() * 3));
+					s.setX(Math.random() * 240 + 30);
+					s.setY(r.getY() + 3);
+					this.add(s);
+				}
+			}
+			if(r.getTerrain().equals("road")){
+				MovingObstacle m;
+				if(r.getDirection()) {
+					m = new MovingObstacle("car", true, r.getdX());
+					m.setX(-20);
+					m.setY(r.getY());
+				}else {
+					m = new MovingObstacle("car", false, r.getdX());
+					m.setX(300);
+					m.setY(r.getY());
+				}
+				this.add(m);
+			}
+			if(r.getTerrain().equals("river")){
+				
+			}
+		}
+	}
+	
+	@Override
+	public void act(long now) {
+		for(Road r : map) {
+			if(r.getTerrain().equals("road") && r.getIntersectingObjects(MovingObstacle.class).size() == 0) {
+				MovingObstacle m;
+				if(r.getDirection()) {
+					m = new MovingObstacle("car", true, r.getdX());
+					m.setX(-20);
+					m.setY(r.getY());
+				}else {
+					m = new MovingObstacle("car", false, r.getdX());
+					m.setX(300);
+					m.setY(r.getY());
+				}
+				this.add(m);
+			}
 		}
 	}
 

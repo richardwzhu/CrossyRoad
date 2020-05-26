@@ -8,21 +8,15 @@ public class Road extends Actor{
 	private StationaryObstacle[] stationaryObstacles;
 	private MovingObstacle[] movingObstacles;
 	public boolean direction;
+	private double dx;
 	
-	public Road(double width, double height) {
-		//this.setWidth(width);
-		//this.setHeight(height/15);
+	public Road() {
 		int n = (int)(Math.random() * 3);
 	
 		//Grass with trees
 		if(n == 0) {
 			terrain = "grass";
 			setImage(new Image(getClass().getClassLoader().getResource("resources/grass.png").toString()));
-			int nunObstacles = (int)(Math.random() * 3) + 1;
-			for(int i = 0; i < nunObstacles; i++) {
-				//stationaryObstacles[i] = new StationaryObstacle((int)(Math.random() * 3));
-			}
-			
 		}
 		
 		//Road with cars
@@ -34,7 +28,6 @@ public class Road extends Actor{
 			}else {
 				direction = false;
 			}
-			//movingObstacles = "car";
 		}
 		
 		//Rivers with logs
@@ -46,7 +39,12 @@ public class Road extends Actor{
 			}else {
 				direction = false;
 			}
-			//movingObstacles = "log";
+		}
+		
+		if(direction) {
+			dx = 1 + Math.random() * 2;
+		}else {
+			dx = -(1 + Math.random() * 2);
 		}
 	}
 	
@@ -57,6 +55,10 @@ public class Road extends Actor{
 	
 	public String getTerrain() {
 		return terrain;
+	}
+	
+	public double getdX() {
+		return dx;
 	}
 
 	@Override
