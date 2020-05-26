@@ -1,8 +1,10 @@
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class CrossyWorld extends World{
 	private Score score;
@@ -10,9 +12,9 @@ public class CrossyWorld extends World{
 	private Score highScore;
 	private Stage stage;
 	private double rate;
-	private Map map;
 	Scene titleScene;
 	Scene gameOverScene;
+	private ArrayList<Road> map;
 	
 	public CrossyWorld(Stage stage, Scene titleScene, Scene gameOverScene) {
 		this.titleScene = titleScene;
@@ -29,8 +31,6 @@ public class CrossyWorld extends World{
     	lives = new Lives();
     	
     	rate = 1;
-    	
-    	map = new Map();
     	
     	getChildren().add(score);
     	getChildren().add(lives);
@@ -77,7 +77,13 @@ public class CrossyWorld extends World{
 	}
 	
 	public void add() {
-		this.add(map);
+		map = new ArrayList<Road>();
+		for(int i = 0; i < 15; i++) {
+			map.add(new Road(getWidth(), getHeight()/15));
+			map.get(i).setX(0);
+			map.get(i).setY(i * getHeight()/15);
+			this.add(map.get(i));
+		}
 	}
 
 }
