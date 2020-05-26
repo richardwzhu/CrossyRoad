@@ -66,11 +66,11 @@ Goal:  Create all the necessary classes and elements for the game. Begin adding 
 
 Work accomplished:  Today, I spent a lot of time brainstorming how I was going to fit all the components together. The biggest issue I am working on right now is how I should create the map of the game (the rows of all the different roads with moving and stationary obstacles on each of them). I have coded the basic functionality and necessary methods for most of the individual components, however, because I can't use an ImageView object for each road object(currently I'm using a Rectangle object), there are issues with adding them to my CrossyWorld because they are not Actor objects.
 
-**Date (time spent)**
+**Monday May 25 (3 hours)**
 
-Goal:  What are you trying to accomplish today?
+Goal:  Complete game logic and begin to add sprites.
 
-Work accomplished:  Describe what you did today and how it went.
+Work accomplished:  Today, I spent about the first two hours working on my game's logic. I resolved my previous issue with the road not being able to be an ImageView object after discovering GIMP. I'm currently having issues with my World subclass (CrossyWorld) and my Game driver class, which isn't displaying anything on the stage. I suspect my add() function that creates the map in the CrossyWorld class is cuasing issues. Things are still pretty scattered apart (I started a bunch of different things at once), but I'm starting to see progress. I also added about 15 new sprites that I edited through GIMP and wrote the code that sets each object to the specific image I need.
 
 ***
 ***
