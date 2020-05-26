@@ -60,11 +60,11 @@ Put all your brainstorm ideas, strategy approaches, and class outlines here
 
 Every day you work, keep track of it here.
 
-**Date (time spent)**
+**Friday May 22 (4 hours)**
 
-Goal:  What are you trying to accomplish today?
+Goal:  Create all the necessary classes and elements for the game. Begin adding the basic structure of the game (terrain, different types of obstacles, character movement, etc.).
 
-Work accomplished:  Describe what you did today and how it went.
+Work accomplished:  Today, I spent a lot of time brainstorming how I was going to fit all the components together. The biggest issue I am working on right now is how I should create the map of the game (the rows of all the different roads with moving and stationary obstacles on each of them). I have coded the basic functionality and necessary methods for most of the individual components, however, because I can't use an ImageView object for each road object(currently I'm using a Rectangle object), there are issues with adding them to my CrossyWorld because they are not Actor objects.
 
 **Date (time spent)**
 
