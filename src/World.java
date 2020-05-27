@@ -30,15 +30,19 @@ public abstract class World extends Pane {
             }
         };
     }
+    
     public void start() {
         timer.start();
     }
+    
     public void stop() {
         timer.stop();
     }
+    
     public void add(Actor actor) {
         getChildren().add(actor);
     }
+    
     public void remove(Actor actor){
         getChildren().remove(actor);
     }
@@ -67,3 +71,4 @@ public abstract class World extends Pane {
     
     public abstract void act(long now);
 }
+

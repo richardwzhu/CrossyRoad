@@ -3,9 +3,11 @@ import javafx.scene.image.Image;
 public class MovingObstacle extends Actor{
 	private double dx;
 	private int num;
+	private String type;
 
 	//direction true means going to the right
 	public MovingObstacle(String type, Boolean direction, double dx) {
+		this.type = type;
 		this.dx = dx;
 		
 		if(type.equals("car")) {
@@ -42,6 +44,14 @@ public class MovingObstacle extends Actor{
 			}
 		}
 		
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setOver() {
+		dx = 0;
 	}
 	
 	@Override

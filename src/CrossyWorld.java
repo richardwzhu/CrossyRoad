@@ -1,7 +1,9 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -15,8 +17,9 @@ public class CrossyWorld extends World{
 	Scene titleScene;
 	Scene gameOverScene;
 	private ArrayList<Road> map;
+	private boolean gameOver;
 	
-	public CrossyWorld(Stage stage, Scene titleScene, Scene gameOverScene) {
+	public CrossyWorld(Stage stage, Scene titleScene) {
 		this.titleScene = titleScene;
 		this.gameOverScene = gameOverScene;
 		this.stage = stage;
@@ -31,6 +34,7 @@ public class CrossyWorld extends World{
     	lives = new Lives();
     	
     	rate = 1;
+    	gameOver = false;
     	
     	getChildren().add(score);
     	getChildren().add(lives);
@@ -45,10 +49,11 @@ public class CrossyWorld extends World{
 	}
 	
 	public boolean isGameOver() {
-		if (lives.getLives() == 0) {
-			return true;
-		}
-		return false;
+		return gameOver;
+	}
+	
+	public void setGameOver(boolean o) {
+		gameOver = o;
 	}
 
 	public void reset() {
@@ -72,7 +77,7 @@ public class CrossyWorld extends World{
 	
 	public void addMap() {
 		map = new ArrayList<Road>();
-		for(int i = 0; i < 15; i++) {
+		for(int i = 0; i < 13; i++) {
 			Road r = new Road();
 			map.add(r);
 			r.setX(0);
@@ -92,17 +97,34 @@ public class CrossyWorld extends World{
 				if(r.getDirection()) {
 					m = new MovingObstacle("car", true, r.getdX());
 					m.setX(-20);
-					m.setY(r.getY());
+					m.setY(r.getY() + 3);
 				}else {
 					m = new MovingObstacle("car", false, r.getdX());
 					m.setX(300);
-					m.setY(r.getY());
+					m.setY(r.getY() + 3);
 				}
 				this.add(m);
 			}
 			if(r.getTerrain().equals("river")){
-				
+				MovingObstacle m;
+				if(r.getDirection()) {
+					m = new MovingObstacle("log", true, r.getdX());
+					m.setX(-20);
+					m.setY(r.getY() + 5);
+				}else {
+					m = new MovingObstacle("log", false, r.getdX());
+					m.setX(300);
+					m.setY(r.getY() + 5);
+				}
+				this.add(m);
 			}
+		}
+		for(int i = 13; i < 15; i++) {
+			Road r = new Road(0);
+			map.add(r);
+			r.setX(0);
+			r.setY(40 * i);
+			this.add(r);
 		}
 	}
 	
@@ -114,15 +136,29 @@ public class CrossyWorld extends World{
 				if(r.getDirection()) {
 					m = new MovingObstacle("car", true, r.getdX());
 					m.setX(-20);
-					m.setY(r.getY());
+					m.setY(r.getY() + 3);
 				}else {
 					m = new MovingObstacle("car", false, r.getdX());
 					m.setX(300);
-					m.setY(r.getY());
+					m.setY(r.getY() + 3);
+				}
+				this.add(m);
+			}
+			if(r.getTerrain().equals("river") && r.getIntersectingObjects(MovingObstacle.class).size() == 0) {
+				MovingObstacle m;
+				if(r.getDirection()) {
+					m = new MovingObstacle("log", true, r.getdX());
+					m.setX(-20);
+					m.setY(r.getY() + 5);
+				}else {
+					m = new MovingObstacle("log", false, r.getdX());
+					m.setX(300);
+					m.setY(r.getY() + 5);
 				}
 				this.add(m);
 			}
 		}
 	}
+	
 
 }
