@@ -72,5 +72,11 @@ Goal:  Complete game logic and begin to add sprites.
 
 Work accomplished:  Today, I spent about the first two hours working on my game's logic. I resolved my previous issue with the road not being able to be an ImageView object after discovering GIMP. I'm currently having issues with my World subclass (CrossyWorld) and my Game driver class, which isn't displaying anything on the stage. I suspect my add() function that creates the map in the CrossyWorld class is cuasing issues. Things are still pretty scattered apart (I started a bunch of different things at once), but I'm starting to see progress. I also added about 15 new sprites that I edited through GIMP and wrote the code that sets each object to the specific image I need.
 
+**Tuesday May 26 (5 hours)**
+
+Goal:  Complete game logic/player interactions and begin to add scene switching and animations.
+
+Work accomplished:  Today, I was able to properly display my map(grass, roads, rivers) with the correct generation of moving and stationary obstacles. I also worked out most of the character interactions with the obstacles (character cannot move in a direction if there are stationary obstacles)(if a player touches a moving car, the game is over) except the player interaction with moving logs on the river. I also added scene switching and a few effects and animations that make the game smoother and more enjoyable. One of these was the ScaleTransition effect during the character's movement, creating a more realistic jumping translation.
+
 ***
 ***
