@@ -33,18 +33,20 @@ public class Character extends Actor{
                         if(actor instanceof StationaryObstacle) {
                         	boolean x = false;
                         	boolean y = false;
-                        	for(int i = -5; i <= 5; i++) {
-                        		if(this.getX() + this.getWidth()/2 == ((StationaryObstacle)actor).getX() + ((StationaryObstacle)actor).getWidth()/2 + i) {
-                        			x = true;
-                        		} 
-                        		if(this.getY() + this.getHeight() == ((StationaryObstacle)actor).getY() + ((StationaryObstacle)actor).getHeight() + i) {
-                        			y = true;
-                        		}
-                        	}
-                        	if(x && y) {
+                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
+                    			x = true;
+                    			System.out.println("aax");
+                    		} 
+                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
+                    			y = true;
+                    			System.out.println("aay");
+                    		}
+                    		if(x && y) {
                         		this.setX(this.getX() + 15);
-                        		System.out.println("a");
-                        	}
+                        		b = true;
+                        		System.out.println("aa");
+                        		break;
+                    		}
                         }
                         if(b) {
                         	break;
@@ -62,18 +64,20 @@ public class Character extends Actor{
                         if(actor instanceof StationaryObstacle) {
                         	boolean x = false;
                         	boolean y = false;
-                        	for(int i = -5; i <= 5; i++) {
-                        		if(this.getX() + this.getWidth()/2 == ((StationaryObstacle)actor).getX() + ((StationaryObstacle)actor).getWidth()/2 + i) {
-                        			x = true;
-                        		} 
-                        		if(this.getY() + this.getHeight() == ((StationaryObstacle)actor).getY() + ((StationaryObstacle)actor).getHeight() + i) {
-                        			y = true;
-                        		}
-                        	}
-                        	if(x && y) {
+                    		if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
+                    			x = true;
+                    			System.out.println("dax");
+                    		} 
+                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
+                    			y = true;
+                    			System.out.println("day");
+                    		}
+                    		if(x && y) {
                         		this.setX(this.getX() - 15);
-                        		System.out.println("a");
-                        	}
+                        		b = true;
+                        		System.out.println("da");
+                        		break;
+                    		}
                         }
                         if(b) {
                         	break;
@@ -90,17 +94,19 @@ public class Character extends Actor{
                         if(actor instanceof StationaryObstacle) {
                         	boolean x = false;
                         	boolean y = false;
-                        	for(int i = -5; i <= 5; i++) {
-                        		if(this.getX() + this.getWidth()/2 == ((StationaryObstacle)actor).getX() + ((StationaryObstacle)actor).getWidth()/2 + i) {
-                        			x = true;
-                        		} 
-                        		if(this.getY() + this.getHeight() == ((StationaryObstacle)actor).getY() + ((StationaryObstacle)actor).getHeight() + i) {
-                        			y = true;
-                        		}
-                        	}
-                        	if(x && y) {
+                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
+                    			x = true;
+                    			System.out.println("sax");
+                    		} 
+                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
+                    			y = true;
+                    			System.out.println("say");
+                    		}
+                    		if(x && y) {
                         		this.setY(this.getY() - 15);
-                        		System.out.println("a");
+                        		b = true;
+                        		System.out.println("sa");
+                        		break;
                         	}
                         }
                         if(b) {
@@ -118,17 +124,19 @@ public class Character extends Actor{
                         if(actor instanceof StationaryObstacle) {
                         	boolean x = false;
                         	boolean y = false;
-                        	for(int i = -5; i <= 5; i++) {
-                        		if(this.getX() + this.getWidth()/2 == ((StationaryObstacle)actor).getX() + ((StationaryObstacle)actor).getWidth()/2 + i) {
-                        			x = true;
-                        		} 
-                        		if(this.getY() + this.getHeight() == ((StationaryObstacle)actor).getY() + ((StationaryObstacle)actor).getHeight() + i) {
-                        			y = true;
-                        		}
-                        	}
-                        	if(x && y) {
+                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
+                    			x = true;
+                    			System.out.println("wax");
+                    		} 
+                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
+                    			y = true;
+                    			System.out.println("way");
+                    		}
+                    		if(x && y) {
                         		this.setY(this.getY() + 15);
-                        		System.out.println("a");
+                        		b = true;
+                        		System.out.println("wa");
+                        		break;
                         	}
                         }
                         if(b) {
@@ -147,33 +155,21 @@ public class Character extends Actor{
                 if(actor instanceof MovingObstacle && ((MovingObstacle)actor).getType().equals("car")) {
                 	boolean x = false;
                 	boolean y = false;
-                	for(int i = -5; i <= 5; i++) {
-                		if(this.getX() + this.getWidth()/2 == ((MovingObstacle)actor).getX() + ((MovingObstacle)actor).getWidth()/2 + i) {
+                	for(int i = -15; i <= 15; i++) {
+                		if(this.getX() + this.getWidth() <= ((MovingObstacle)actor).getX() + ((MovingObstacle)actor).getWidth() && this.getX() >= ((MovingObstacle)actor).getX()) {
                 			x = true;
                 		} 
                 		if(this.getY() + this.getHeight() == ((MovingObstacle)actor).getY() + ((MovingObstacle)actor).getHeight() + i) {
                 			y = true;
                 		}
-                	}
-                	if(x && y) {
-                		((CrossyWorld)getWorld()).setGameOver(true);
-                		System.out.println("a");
+                		if(x && y) {
+                    		((CrossyWorld)getWorld()).setGameOver(true);
+                    	}
                 	}
                 }
         	}
 		}catch(Exception e){
 			
 		}
-		
-		/*try {
-			if(this.getOneIntersectingObject(MovingObstacle.class).getType().equals("car")) {
-				((CrossyWorld)getWorld()).setGameOver(true);
-			}
-			//if(this.getOneIntersectingObject(Road.class).getTerrain().equals("river") && !this.getOneIntersectingObject(MovingObstacle.class).getType().equals("log")) {
-				//((CrossyWorld)getWorld()).setGameOver(true);
-			//}
-		}catch(Exception e){
-			
-		}*/
 	}
 }
