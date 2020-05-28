@@ -27,7 +27,7 @@ public class Character extends Actor{
 			    if (this.getX() > 10) {
 			    	this.setX(this.getX() - 15);
 			    	st.play();
-	                setImage(new Image(getClass().getClassLoader().getResource("resources/chickenleft.png").toString()));
+	                
 	                if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
 	                	this.setX(this.getX() + 15);
 	                }

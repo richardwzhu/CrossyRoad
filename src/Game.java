@@ -1,6 +1,7 @@
 import java.util.ConcurrentModificationException;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -23,13 +24,16 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Game extends Application {
 	private CrossyWorld crossyWorld;
 	private Scene titleScene;
 	private Scene gameScene;
+	private Scene instructionScene;
 	private Character player;
 	private int score;
+	private RotateTransition rt;
 	
     public static void main(String[] args) {
         launch();
@@ -38,6 +42,9 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+    	rt = new RotateTransition();
+        rt.setDuration(Duration.seconds(2));
+        rt.setByAngle(360);
     	DropShadow dropShadow = new DropShadow(10, 10, 10, Color.GRAY);
         Light.Distant light = new Light.Distant();
 		light.setAzimuth(-135.0);
@@ -52,8 +59,6 @@ public class Game extends Application {
         stage.setWidth(300);
         stage.setHeight(600);
 
-        
-
         crossyWorld = new CrossyWorld(stage, titleScene);
 
 
@@ -63,14 +68,13 @@ public class Game extends Application {
         
         ImageView background = new ImageView();
         background.setImage(new Image(getClass().getClassLoader().getResource("resources/introback.png").toString()));
-        background.setX(-200);
-        background.setY(-100);
         
-        Text breakoutText = new Text("Crossy Road");
-		breakoutText.setEffect(dropShadow);
-		breakoutText.setFill(Color.WHITE);
-        breakoutText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 30));
+        Text crossyText = new Text("Crossy Road");
+        crossyText.setEffect(dropShadow);
+        crossyText.setFill(Color.BLACK);
+        crossyText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 50));
 
+        //Create Buttons
         Button playButton = new Button("Play");
         playButton.setEffect(dropShadow);
         playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -83,21 +87,77 @@ public class Game extends Application {
             }
         });
         
-
-        //Set positions
-        breakoutText.setLayoutX(70);
-        breakoutText.setLayoutY(100);
+        Button instructionButton = new Button("Instructions");
+        instructionButton.setEffect(dropShadow);
+        instructionButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+            	stage.setScene(instructionScene);
+            	rt.playFromStart();
+            	stage.show();
+            }
+        });
+        
+        //Position elements and add them
+        background.setLayoutX(-200);
+        background.setLayoutY(-100);
+        crossyText.setLayoutX(22.5);
+        crossyText.setLayoutY(100);
         playButton.setLayoutX(120);
         playButton.setLayoutY(160);
+        instructionButton.setLayoutX(101);
+        instructionButton.setLayoutY(200);
 
         titleScreen.getChildren().add(background);
-        titleScreen.getChildren().add(breakoutText);
-        titleScreen.getChildren().add(playButton);
+        titleScreen.getChildren().addAll(crossyText, playButton, instructionButton);
 
         titleScene = new Scene(titleScreen);
         stage.setScene(titleScene);
         stage.show();
         
+        
+        
+        //Instruction screen 
+        Group instructionScreen = new Group();
+
+        Text instructionText = new Text("Instructions!");
+        instructionText.setEffect(dropShadow);
+        instructionText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 40));
+
+        //Create Buttons
+        Button instructionReturnButton = new Button("Return to Main Menu");
+        instructionReturnButton.setPrefSize(200, 50);
+        instructionReturnButton.setEffect(dropShadow);
+        instructionReturnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                stage.setScene(titleScene);
+                stage.show();
+                rt.playFromStart();
+            }
+        });
+
+        //Create instruction message
+        Text instructionMessage = new Text();
+        instructionMessage.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 7));
+        instructionMessage.setText("             Use WASD to move your character around the screen.\n" +
+                "Every step forward, you gain 1 point and every step back, you lose 1.\n" +
+                "You cannot run through stationary obstacles (trees, bushes, rocks)\n " +
+                "      and if you are hit by a car or fall into the river, you lose.");
+
+        //Position elements and add them
+        instructionText.setLayoutX(45);
+        instructionText.setLayoutY(100);
+        instructionMessage.setLayoutX(20);
+        instructionMessage.setLayoutY(160);
+        instructionReturnButton.setLayoutX(50);
+        instructionReturnButton.setLayoutY(200);
+
+        instructionScreen.getChildren().addAll(background, instructionText, instructionMessage, instructionReturnButton);
+
+        instructionScene = new Scene(instructionScreen);
+
+        rt.setNode(instructionText);
         
         
         //Game scene
@@ -154,13 +214,11 @@ public class Game extends Application {
                         scoreText.setFill(Color.WHITE);
                         scoreText.setX(45);
                         scoreText.setY(75);
-                        crossyWorldScene.getChildren().add(scoreText);
                         
                         Button replayButton = new Button("Replay");
-                        //replayButton.setEffect(dropShadow);
+                        replayButton.setEffect(dropShadow);
                         replayButton.setLayoutX(60);
                         replayButton.setLayoutY(200);
-                        crossyWorldScene.getChildren().add(replayButton);
                         replayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent t) {
@@ -171,6 +229,8 @@ public class Game extends Application {
 
                             }
                         });
+                        
+                        crossyWorldScene.getChildren().addAll(scoreText, replayButton);
                     }
                 }
             }
