@@ -73,6 +73,10 @@ public class Game extends Application {
         crossyText.setEffect(dropShadow);
         crossyText.setFill(Color.BLACK);
         crossyText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 50));
+        
+        //Create visuals
+        ImageView chicken = new ImageView();
+        chicken.setImage(new Image(getClass().getClassLoader().getResource("resources/titlechicken.png").toString()));
 
         //Create Buttons
         Button playButton = new Button("Play");
@@ -99,17 +103,18 @@ public class Game extends Application {
         });
         
         //Position elements and add them
-        background.setLayoutX(-200);
-        background.setLayoutY(-100);
-        crossyText.setLayoutX(22.5);
+        background.setX(-200);
+        background.setY(-100);
+        chicken.setLayoutX(150);
+        chicken.setLayoutY(320);
+        crossyText.setLayoutX(23);
         crossyText.setLayoutY(100);
-        playButton.setLayoutX(120);
+        playButton.setLayoutX(125);
         playButton.setLayoutY(160);
-        instructionButton.setLayoutX(101);
+        instructionButton.setLayoutX(105);
         instructionButton.setLayoutY(200);
 
-        titleScreen.getChildren().add(background);
-        titleScreen.getChildren().addAll(crossyText, playButton, instructionButton);
+        titleScreen.getChildren().addAll(background, chicken, crossyText, playButton, instructionButton);
 
         titleScene = new Scene(titleScreen);
         stage.setScene(titleScene);
@@ -119,6 +124,9 @@ public class Game extends Application {
         
         //Instruction screen 
         Group instructionScreen = new Group();
+        
+        ImageView back = new ImageView();
+        back.setImage(new Image(getClass().getClassLoader().getResource("resources/introback.png").toString()));
 
         Text instructionText = new Text("Instructions!");
         instructionText.setEffect(dropShadow);
@@ -146,6 +154,8 @@ public class Game extends Application {
                 "      and if you are hit by a car or fall into the river, you lose.");
 
         //Position elements and add them
+        back.setX(-200);
+        back.setY(-100);
         instructionText.setLayoutX(45);
         instructionText.setLayoutY(100);
         instructionMessage.setLayoutX(20);
@@ -153,7 +163,7 @@ public class Game extends Application {
         instructionReturnButton.setLayoutX(50);
         instructionReturnButton.setLayoutY(200);
 
-        instructionScreen.getChildren().addAll(background, instructionText, instructionMessage, instructionReturnButton);
+        instructionScreen.getChildren().addAll(back, instructionText, instructionMessage, instructionReturnButton);
 
         instructionScene = new Scene(instructionScreen);
 

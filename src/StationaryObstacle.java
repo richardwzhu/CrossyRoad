@@ -24,7 +24,7 @@ public class StationaryObstacle extends Actor{
 	
 	@Override
 	public void act(long now) {
-		//move(0, ((CrossyWorld)getWorld()).getRate());
+
 	}
 
 }
