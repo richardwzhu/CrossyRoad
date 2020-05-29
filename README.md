@@ -76,7 +76,12 @@ Work accomplished:  Today, I spent about the first two hours working on my game'
 
 Goal:  Complete game logic/player interactions and begin to add scene switching and animations.
 
-Work accomplished:  Today, I was able to properly display my map(grass, roads, rivers) with the correct generation of moving and stationary obstacles. I also worked out most of the character interactions with the obstacles (character cannot move in a direction if there are stationary obstacles)(if a player touches a moving car, the game is over) except the player interaction with moving logs on the river. I also added scene switching and a few effects and animations that make the game smoother and more enjoyable. One of these was the ScaleTransition effect during the character's movement, creating a more realistic jumping translation.
+Work accomplished:  Today, I was able to properly display my map (grass, roads, rivers) with the correct generation of moving and stationary obstacles. I also worked out most of the character interactions with the obstacles (character cannot move in a direction if there are stationary obstacles)(if a player touches a moving car, the game is over) except the player interaction with moving logs on the river. I also added scene switching and a few effects and animations that make the game smoother and more enjoyable. One of these was the ScaleTransition effect during the character's movement, creating a more realistic jumping translation.
 
+**Thursday May 28 (6 hours)**
+
+Goal:  Complete game logic and player interaction with log, add score counting, improve collision detecting, add/finish scene switching.
+
+Work accomplished:  First, I attempted to optimize my collision detecting mechanism (character against stationary and moving obstacles). I tried a few different approaches, all of which I committed to GitHub before scrapping (if it didn't work), just in case I were to return to the idea. I ended up improving marginally on my prior detecting method. I also finished my character - obstacle interactions after coding the character and river/log interaction. I added score counting during the running game, however, my game over page still doesn't display to correct final score. I also added a proper instruction scene and game over scene. My game over scene's 'back to main menu' button works, however, the 'replay' button is only somewhat functional.
 ***
 ***
