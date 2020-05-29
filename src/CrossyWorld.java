@@ -17,6 +17,7 @@ public class CrossyWorld extends World{
 	Scene gameOverScene;
 	private ArrayList<Road> map;
 	private boolean gameOver;
+	private boolean clear;
 	
 	public CrossyWorld(Stage stage, Scene titleScene, Scene gameOverScene) {
 		this.titleScene = titleScene;
@@ -31,6 +32,7 @@ public class CrossyWorld extends World{
     	
     	rate = 1;
     	gameOver = false;
+    	clear = false;
     	
     	getChildren().add(score);
 	}
@@ -47,6 +49,14 @@ public class CrossyWorld extends World{
 		gameOver = o;
 	}
 	
+	public void setLevelCleared(boolean clear) {
+		this.clear = clear;
+	}
+	
+	public boolean isLevelCleared() {
+		return clear;
+	}
+	
 	public ArrayList<Road> getMap(){
 		return map;
 	}
@@ -57,11 +67,25 @@ public class CrossyWorld extends World{
 			map.remove(i);
 		}
 		for(Node actor : this.getChildren()) {
-			this.remove((Actor)actor);
+			if(actor instanceof StationaryObstacle || actor instanceof MovingObstacle) {
+				this.remove((Actor)actor);
+			}
 		}
 		addMap();
 		score.setScore(0);
 		score.updateDisplay();
+	}
+	
+	public void cont() {
+		for(int i = 0; i < map.size(); i++) {
+			map.remove(i);
+		}
+		for(Node actor : this.getChildren()) {
+			if(actor instanceof StationaryObstacle || actor instanceof MovingObstacle) {
+				this.remove((Actor)actor);
+			}
+		}
+		addMap();
 	}
 	
 	public double getRate() {

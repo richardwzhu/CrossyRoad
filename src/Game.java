@@ -270,6 +270,22 @@ public class Game extends Application {
                         stage.show();
                         rt.playFromStart();
                     }
+                    if (crossyWorld.isLevelCleared()) {
+                    	/*for(Node actor : player.getWorld().getChildren()) {
+                        	if(actor instanceof Character) {
+                        		player.getWorld().getChildren().remove(actor);
+                        	}
+                        	if(actor instanceof Score) {
+                        		player.getWorld().getChildren().remove(actor);
+                        	}
+                        }*/
+                        crossyWorld.cont();
+                        crossyWorld.addMap();
+                        player.setX(stage.getWidth()/2 - player.getWidth()/2);
+                        player.setY(stage.getHeight() - 80);
+                        //player.getWorld().getChildren().addAll(player, crossyWorld.getScore());
+                        crossyWorld.setLevelCleared(false);
+                    }
                 }
             }
 

@@ -92,7 +92,7 @@ public class Character extends Actor{
 			    }
 		    }
 		    if(getWorld().isKeyDown(KeyCode.W)) {
-			    if (this.getY() > 15) {
+			    if (this.getY() > 0) {
 			    	this.setY(this.getY() - 15);
 			    	st.play();
 			    	Score cur = (((CrossyWorld)getWorld()).getScore());
@@ -154,6 +154,9 @@ public class Character extends Actor{
         	}
 		}catch(Exception e){
 			
+		}
+		if(this.getY() < 20) {
+			((CrossyWorld)getWorld()).setLevelCleared(true);
 		}
 	}
 }
