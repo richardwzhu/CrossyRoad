@@ -45,13 +45,13 @@ public class Road extends Actor{
 			if(getTerrain() == "road") {
 				dx = 1 + Math.random() * 2;
 			}else {
-				dx = 1 + Math.random() * 1;
+				dx = 1 + Math.random() * 0.2;
 			}
 		}else{
 			if(getTerrain() == "road") {
 				dx = -(1 + Math.random() * 2);
 			}else {
-				dx = -(1 + Math.random() * 1);
+				dx = -(1 + Math.random() * 0.2);
 			}
 		}
 	}

@@ -25,7 +25,7 @@ public class Character extends Actor{
 		    st.setAutoReverse(true);
 		    
 		    if(getWorld().isKeyDown(KeyCode.A)) {
-			    if (this.getX() > 10) {
+			    if (this.getX() > 15) {
 			    	this.setX(this.getX() - 15);
 			    	st.play();
 			    	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenleft.png").toString()));
@@ -46,7 +46,7 @@ public class Character extends Actor{
 			    }
 		    }   
 		    if(getWorld().isKeyDown(KeyCode.D)) {
-			    if (this.getX() < 290) {
+			    if (this.getX() < 285) {
 			    	this.setX(this.getX() + 15);
 			    	st.play();
 			    	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenright.png").toString()));
@@ -67,12 +67,11 @@ public class Character extends Actor{
 			    }
 		    }
 		    if(getWorld().isKeyDown(KeyCode.S)) {
-			    if (this.getY() < 590) {
+			    if (this.getY() < 585) {
 			    	this.setY(this.getY() + 15);
 			    	st.play();
 			    	Score cur = (((CrossyWorld)getWorld()).getScore());
 			    	cur.setScore(cur.getScore() - 1);
-	                System.out.println("s: " + cur.getScore());
 			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
  	                	this.setY(this.getY() - 15);
  	                	int i = 14;
@@ -93,12 +92,11 @@ public class Character extends Actor{
 			    }
 		    }
 		    if(getWorld().isKeyDown(KeyCode.W)) {
-			    if (this.getY() > 10) {
+			    if (this.getY() > 15) {
 			    	this.setY(this.getY() - 15);
 			    	st.play();
 			    	Score cur = (((CrossyWorld)getWorld()).getScore());
 			    	cur.setScore(cur.getScore() + 1);
-	                System.out.println("s: " + cur.getScore());
 			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
  	                	this.setY(this.getY() + 15);
  	                	int i = 14;
@@ -118,131 +116,6 @@ public class Character extends Actor{
  	                }
 			    }
 		    }
-		    
-		    
-		    //Attempt at better collision detecting
-			/*if(getWorld().isKeyDown(KeyCode.A)) {
-			    if (this.getX() > 10) {
-			    	this.setX(this.getX() - 15);
-			    	st.play();
-			    	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenleft.png").toString()));
-			    	for (Node actor: getWorld().getChildren()) {
-			    		boolean b = false;
-                        if(actor instanceof StationaryObstacle) {
-                        	boolean x = false;
-                        	boolean y = false;
-                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
-                    			x = true;
-                    			System.out.println("aax");
-                    		} 
-                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
-                    			y = true;
-                    			System.out.println("aay");
-                    		}
-                    		if(x && y) {
-                        		this.setX(this.getX() + 15);
-                        		b = true;
-                        		System.out.println("aa");
-                        		break;
-                    		}
-                        }
-                        if(b) {
-                        	break;
-                        }
-                    }
-	            }
-			}
-			if(getWorld().isKeyDown(KeyCode.D)) {
-	            if (this.getX() + this.getWidth() < 290) {
-	            	this.setX(this.getX() + 15);
-	            	st.play();
-	            	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenright.png").toString()));
-	            	for (Node actor: getWorld().getChildren()) {
-	            		boolean b = false;
-                        if(actor instanceof StationaryObstacle) {
-                        	boolean x = false;
-                        	boolean y = false;
-                    		if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
-                    			x = true;
-                    			System.out.println("dax");
-                    		} 
-                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
-                    			y = true;
-                    			System.out.println("day");
-                    		}
-                    		if(x && y) {
-                        		this.setX(this.getX() - 15);
-                        		b = true;
-                        		System.out.println("da");
-                        		break;
-                    		}
-                        }
-                        if(b) {
-                        	break;
-                        }
-                    }
-	            }
-			}
-			if(getWorld().isKeyDown(KeyCode.S)) {
-	            if (this.getY() + this.getHeight() < 590) {
-	            	this.setY(this.getY() + 15);
-	            	st.play();
-	            	for (Node actor: getWorld().getChildren()) {
-	            		boolean b = false;
-                        if(actor instanceof StationaryObstacle) {
-                        	boolean x = false;
-                        	boolean y = false;
-                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
-                    			x = true;
-                    			System.out.println("sax");
-                    		} 
-                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
-                    			y = true;
-                    			System.out.println("say");
-                    		}
-                    		if(x && y) {
-                        		this.setY(this.getY() - 15);
-                        		b = true;
-                        		System.out.println("sa");
-                        		break;
-                        	}
-                        }
-                        if(b) {
-                        	break;
-                        }
-                    }
-	            }
-			}
-			if(getWorld().isKeyDown(KeyCode.W)) {
-	            if (this.getY() > 10) {
-	            	this.setY(this.getY() - 15);
-	            	st.play();
-	            	for (Node actor: getWorld().getChildren()) {
-	            		boolean b = false;
-                        if(actor instanceof StationaryObstacle) {
-                        	boolean x = false;
-                        	boolean y = false;
-                        	if(this.getX() + 2 * this.getWidth() <= ((StationaryObstacle)actor).getX() + 2 * ((StationaryObstacle)actor).getWidth() && this.getX() - this.getWidth() >= ((StationaryObstacle)actor).getX() - ((StationaryObstacle)actor).getWidth()) {
-                    			x = true;
-                    			System.out.println("wax");
-                    		} 
-                    		if(this.getY() + 2 * this.getHeight() <= ((StationaryObstacle)actor).getY() + 2 * ((StationaryObstacle)actor).getHeight() && this.getY() >= ((StationaryObstacle)actor).getY()) {
-                    			y = true;
-                    			System.out.println("way");
-                    		}
-                    		if(x && y) {
-                        		this.setY(this.getY() + 15);
-                        		b = true;
-                        		System.out.println("wa");
-                        		break;
-                        	}
-                        }
-                        if(b) {
-                        	break;
-                        }
-	            	}
-	            }
-			}*/
 		}
 	}
 	

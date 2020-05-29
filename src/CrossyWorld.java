@@ -74,14 +74,14 @@ public class CrossyWorld extends World{
 	
 	public void addMap() {
 		map = new ArrayList<Road>();
-		for(int i = 0; i < 13; i++) {
+		for(int i = 0; i < 12; i++) {
 			Road r = new Road();
 			map.add(r);
 			r.setX(0);
 			r.setY(40 * i);
 			this.add(r);
 			if(r.getTerrain().equals("grass")){
-				int numObstacles = (int)(Math.random() * 4) + 1;
+				int numObstacles = (int)(Math.random() * 3) + 1;
 				for(int j = 0; j < numObstacles; j++) {
 					StationaryObstacle s = new StationaryObstacle((int)(Math.random() * 3));
 					s.setX(Math.random() * 240 + 30);
@@ -89,34 +89,8 @@ public class CrossyWorld extends World{
 					this.add(s);
 				}
 			}
-			if(r.getTerrain().equals("road")){
-				MovingObstacle m;
-				if(r.getDirection()) {
-					m = new MovingObstacle("car", true, r.getdX());
-					m.setX(-20);
-					m.setY(r.getY() + 3);
-				}else {
-					m = new MovingObstacle("car", false, r.getdX());
-					m.setX(300);
-					m.setY(r.getY() + 3);
-				}
-				this.add(m);
-			}
-			if(r.getTerrain().equals("river")){
-				MovingObstacle m;
-				if(r.getDirection()) {
-					m = new MovingObstacle("log", true, r.getdX());
-					m.setX(-20);
-					m.setY(r.getY() + 5);
-				}else {
-					m = new MovingObstacle("log", false, r.getdX());
-					m.setX(300);
-					m.setY(r.getY() + 5);
-				}
-				this.add(m);
-			}
 		}
-		for(int i = 13; i < 15; i++) {
+		for(int i = 12; i < 15; i++) {
 			Road r = new Road(0);
 			map.add(r);
 			r.setX(0);

@@ -264,10 +264,8 @@ public class Game extends Application {
             @Override
             public void handle(long now) {
                 if (stage.getScene() == (gameScene)) {
-                	/*for(Node actor : player.getWorld().getChildren()) {
-                		actor.setLayoutY(-0.1);
-                	}*/
                     if (crossyWorld.isGameOver()) {
+                    	scoreText.setText("Your Score Was " + crossyWorld.getScore().getScore() + "!");
                     	stage.setScene(gameOverScene);
                         stage.show();
                         rt.playFromStart();
