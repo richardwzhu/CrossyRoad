@@ -74,6 +74,7 @@ public class CrossyWorld extends World{
 		addMap();
 		score.setScore(0);
 		score.updateDisplay();
+		score.toFront();
 	}
 	
 	public void cont() {

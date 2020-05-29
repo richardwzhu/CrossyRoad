@@ -182,6 +182,7 @@ public class Game extends Application {
         player = new Character(getClass().getClassLoader().getResource("resources/chickenleft.png").toString());
         player.setX(stage.getWidth()/2 - player.getWidth()/2);
         player.setY(stage.getHeight() - 80);
+        player.toFront();
         
         crossyWorld.getChildren().addAll(player);
         
@@ -283,6 +284,8 @@ public class Game extends Application {
                         crossyWorld.addMap();
                         player.setX(stage.getWidth()/2 - player.getWidth()/2);
                         player.setY(stage.getHeight() - 80);
+                        player.toFront();
+                        crossyWorld.getScore().toFront();
                         //player.getWorld().getChildren().addAll(player, crossyWorld.getScore());
                         crossyWorld.setLevelCleared(false);
                     }

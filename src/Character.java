@@ -120,7 +120,8 @@ public class Character extends Actor{
 	}
 	
 	@Override
-	public void act(long now) {		
+	public void act(long now) {	
+		this.toFront();
 		try {
 			for (Node actor: getWorld().getChildren()) {
                 if(actor instanceof MovingObstacle && ((MovingObstacle)actor).getType().equals("car")) {
