@@ -23,9 +23,11 @@ public class CrossyWorld extends World{
 		this.stage = stage;
 		this.gameOverScene = gameOverScene;
 		
+		addMap();
+		
 		score = new Score();
-		score.setX(getWidth() + 10);
-    	score.setY(20);
+		score.setX(5);
+		score.setY(20);
     	
     	rate = 1;
     	gameOver = false;
@@ -59,6 +61,7 @@ public class CrossyWorld extends World{
 		}
 		addMap();
 		score.setScore(0);
+		score.updateDisplay();
 	}
 	
 	public double getRate() {

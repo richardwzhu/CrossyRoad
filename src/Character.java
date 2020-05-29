@@ -71,9 +71,10 @@ public class Character extends Actor{
 			    	this.setY(this.getY() + 15);
 			    	st.play();
 			    	Score cur = (((CrossyWorld)getWorld()).getScore());
+			    	cur.setScore(cur.getScore() - 1);
+	                System.out.println("s: " + cur.getScore());
 			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
  	                	this.setY(this.getY() - 15);
- 	                	cur.setScore(cur.getScore() - 1);
  	                	int i = 14;
  	                	boolean cont = true;
  	                	while(i > 0 && cont == true) {
@@ -85,7 +86,7 @@ public class Character extends Actor{
  	                			cont = false;
  	                		}
  	                	}
- 	                	if(i == 1) {
+ 	                	if(i == 0) {
  	                		cur.setScore(cur.getScore() + 1);
  	                	}
  	                }
@@ -96,9 +97,10 @@ public class Character extends Actor{
 			    	this.setY(this.getY() - 15);
 			    	st.play();
 			    	Score cur = (((CrossyWorld)getWorld()).getScore());
+			    	cur.setScore(cur.getScore() + 1);
+	                System.out.println("s: " + cur.getScore());
 			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
  	                	this.setY(this.getY() + 15);
- 	                	cur.setScore(cur.getScore() + 1);
  	                	int i = 14;
  	                	boolean cont = true;
  	                	while(i > 0 && cont == true) {
@@ -110,7 +112,7 @@ public class Character extends Actor{
  	                			cont = false;
  	                		}
  	                	}
- 	                	if(i == 1) {
+ 	                	if(i == 0) {
  	                		cur.setScore(cur.getScore() - 1);
  	                	}
  	                }

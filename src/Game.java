@@ -33,7 +33,6 @@ public class Game extends Application {
 	private Scene instructionScene;
 	private Scene gameOverScene;
 	private Character player;
-	private int score;
 	private RotateTransition rt;
 	
     public static void main(String[] args) {
@@ -53,7 +52,6 @@ public class Game extends Application {
 		lighting.setLight(light);
 		lighting.setSurfaceScale(5.0);
 		dropShadow.setInput(lighting);
-    	score = 0;
     	
     	stage.setTitle("Crossy Road");
         stage.setResizable(false);
@@ -176,16 +174,16 @@ public class Game extends Application {
         BorderPane crossyWorldScene = new BorderPane();
 
         //Create map
-        crossyWorld.addMap();
 
         MyKeyPressedListener p = new MyKeyPressedListener();
         crossyWorld.setOnKeyPressed(p);
         crossyWorldScene.setCenter(crossyWorld);
-        
+
         player = new Character(getClass().getClassLoader().getResource("resources/chickenleft.png").toString());
         player.setX(stage.getWidth()/2 - player.getWidth()/2);
         player.setY(stage.getHeight() - 80);
-        crossyWorld.add(player);
+        
+        crossyWorld.getChildren().addAll(player);
         
         crossyWorld.start();
         
@@ -217,12 +215,12 @@ public class Game extends Application {
         replayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                //stage.setScene(gameScene);
-                //player.setX(stage.getWidth()/2 - player.getWidth()/2);
-                //player.setY(stage.getHeight() - 80);
-                //crossyWorld.reset();
-            	//crossyWorld.addMap();
-                //stage.show();
+                stage.setScene(gameScene);
+                player.setX(stage.getWidth()/2 - player.getWidth()/2);
+                player.setY(stage.getHeight() - 80);
+                crossyWorld.reset();
+            	crossyWorld.addMap();
+                stage.show();
             }
         });
         
@@ -234,7 +232,7 @@ public class Game extends Application {
                 stage.setScene(titleScene);
                 player.setX(stage.getWidth()/2 - player.getWidth()/2);
                 player.setY(stage.getHeight() - 80);
-                crossyWorld.reset();
+                //crossyWorld.reset();
             	crossyWorld.addMap();
                 stage.show();
                 rt.playFromStart();
