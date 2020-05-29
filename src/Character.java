@@ -23,7 +23,103 @@ public class Character extends Actor{
 		    st.setByY(0.5f);
 		    st.setCycleCount((int) 2f);
 		    st.setAutoReverse(true);
-			if(getWorld().isKeyDown(KeyCode.A)) {
+		    
+		    if(getWorld().isKeyDown(KeyCode.A)) {
+			    if (this.getX() > 10) {
+			    	this.setX(this.getX() - 15);
+			    	st.play();
+			    	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenleft.png").toString()));
+			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	                	this.setX(this.getX() + 15);
+ 	                	int i = 14;
+ 	                	boolean cont = true;
+ 	                	while(i > 0 && cont == true) {
+ 	                		this.setX(this.getX() - i);
+ 	                		if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	    	                	this.setX(this.getX() + i);
+ 	    	                	i--;
+ 	                		}else {
+ 	                			cont = false;
+ 	                		}
+ 	                	}
+ 	                }
+			    }
+		    }   
+		    if(getWorld().isKeyDown(KeyCode.D)) {
+			    if (this.getX() < 290) {
+			    	this.setX(this.getX() + 15);
+			    	st.play();
+			    	setImage(new Image(getClass().getClassLoader().getResource("resources/chickenright.png").toString()));
+			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	                	this.setX(this.getX() - 15);
+ 	                	int i = 14;
+ 	                	boolean cont = true;
+ 	                	while(i > 0 && cont == true) {
+ 	                		this.setX(this.getX() + i);
+ 	                		if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	    	                	this.setX(this.getX() - i);
+ 	    	                	i--;
+ 	                		}else {
+ 	                			cont = false;
+ 	                		}
+ 	                	}
+ 	                }
+			    }
+		    }
+		    if(getWorld().isKeyDown(KeyCode.S)) {
+			    if (this.getY() < 590) {
+			    	this.setY(this.getY() + 15);
+			    	st.play();
+			    	Score cur = (((CrossyWorld)getWorld()).getScore());
+			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	                	this.setY(this.getY() - 15);
+ 	                	cur.setScore(cur.getScore() - 1);
+ 	                	int i = 14;
+ 	                	boolean cont = true;
+ 	                	while(i > 0 && cont == true) {
+ 	                		this.setY(this.getY() + i);
+ 	                		if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	    	                	this.setY(this.getY() - i);
+ 	    	                	i--;
+ 	                		}else {
+ 	                			cont = false;
+ 	                		}
+ 	                	}
+ 	                	if(i == 1) {
+ 	                		cur.setScore(cur.getScore() + 1);
+ 	                	}
+ 	                }
+			    }
+		    }
+		    if(getWorld().isKeyDown(KeyCode.W)) {
+			    if (this.getY() > 10) {
+			    	this.setY(this.getY() - 15);
+			    	st.play();
+			    	Score cur = (((CrossyWorld)getWorld()).getScore());
+			    	if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	                	this.setY(this.getY() + 15);
+ 	                	cur.setScore(cur.getScore() + 1);
+ 	                	int i = 14;
+ 	                	boolean cont = true;
+ 	                	while(i > 0 && cont == true) {
+ 	                		this.setY(this.getY() - i);
+ 	                		if(this.getIntersectingObjects(StationaryObstacle.class).size() > 0) {
+ 	    	                	this.setY(this.getY() + i);
+ 	    	                	i--;
+ 	                		}else {
+ 	                			cont = false;
+ 	                		}
+ 	                	}
+ 	                	if(i == 1) {
+ 	                		cur.setScore(cur.getScore() - 1);
+ 	                	}
+ 	                }
+			    }
+		    }
+		    
+		    
+		    //Attempt at better collision detecting
+			/*if(getWorld().isKeyDown(KeyCode.A)) {
 			    if (this.getX() > 10) {
 			    	this.setX(this.getX() - 15);
 			    	st.play();
@@ -144,7 +240,7 @@ public class Character extends Actor{
                         }
 	            	}
 	            }
-			}
+			}*/
 		}
 	}
 	
@@ -155,17 +251,30 @@ public class Character extends Actor{
                 if(actor instanceof MovingObstacle && ((MovingObstacle)actor).getType().equals("car")) {
                 	boolean x = false;
                 	boolean y = false;
-                	for(int i = -15; i <= 15; i++) {
-                		if(this.getX() + this.getWidth() <= ((MovingObstacle)actor).getX() + ((MovingObstacle)actor).getWidth() && this.getX() >= ((MovingObstacle)actor).getX()) {
-                			x = true;
-                		} 
-                		if(this.getY() + this.getHeight() == ((MovingObstacle)actor).getY() + ((MovingObstacle)actor).getHeight() + i) {
-                			y = true;
-                		}
-                		if(x && y) {
-                    		((CrossyWorld)getWorld()).setGameOver(true);
-                    	}
+            		if(this.getX() + this.getWidth() <= ((MovingObstacle)actor).getX() + ((MovingObstacle)actor).getWidth() && this.getX() >= ((MovingObstacle)actor).getX()) {
+            			x = true;
+            		} 
+            		if(this.getY() + this.getHeight() >= ((MovingObstacle)actor).getY() && this.getY() + this.getHeight() <= ((MovingObstacle)actor).getY() + 1.5 * ((MovingObstacle)actor).getHeight()) {
+            			y = true;
+            		}
+            		if(x && y) {
+                		((CrossyWorld)getWorld()).setGameOver(true);
                 	}
+                }
+                try {
+                	if(getOneIntersectingObject(Road.class).getTerrain().equals("river")) {
+                		boolean onLog = false;
+                		for(int i = 0; i < getIntersectingObjects(MovingObstacle.class).size(); i++) {
+                			if(getIntersectingObjects(MovingObstacle.class).get(i).getType().equals("log")) {
+                				onLog = true;
+                			}
+                		}
+                		if(!onLog) {
+                			((CrossyWorld)getWorld()).setGameOver(true);
+                		}
+                	}
+                }catch(Error e) {
+                	
                 }
         	}
 		}catch(Exception e){

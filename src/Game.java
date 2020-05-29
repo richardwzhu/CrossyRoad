@@ -31,6 +31,7 @@ public class Game extends Application {
 	private Scene titleScene;
 	private Scene gameScene;
 	private Scene instructionScene;
+	private Scene gameOverScene;
 	private Character player;
 	private int score;
 	private RotateTransition rt;
@@ -59,7 +60,7 @@ public class Game extends Application {
         stage.setWidth(300);
         stage.setHeight(600);
 
-        crossyWorld = new CrossyWorld(stage, titleScene);
+        crossyWorld = new CrossyWorld(stage, titleScene, gameOverScene);
 
 
         
@@ -170,6 +171,7 @@ public class Game extends Application {
         rt.setNode(instructionText);
         
         
+        
         //Game scene
         BorderPane crossyWorldScene = new BorderPane();
 
@@ -193,54 +195,84 @@ public class Game extends Application {
         
         
         
-        //Game Over Scene
-        //BorderPane gameOverScreen = new BorderPane();
-        //gameOverScene = new Scene(gameOverScreen);
+        //Game Over scene
+        //Set up scene
+        Group gameOverScreen = new Group();
+        
+        ImageView b = new ImageView();
+        b.setImage(new Image(getClass().getClassLoader().getResource("resources/introback.png").toString()));
 
+        //Create UI elements
+        Text gameOverText = new Text("Game Over!");
+		dropShadow.setInput(lighting);
+        gameOverText.setEffect(dropShadow);
+        gameOverText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 50));
+
+        Text scoreText = new Text("Your Score Was " + crossyWorld.getScore().getScore() + "!");
+        scoreText.setEffect(dropShadow);
+        scoreText.setFont(Font.font("impact", FontWeight.BOLD, FontPosture.ITALIC, 30));
+
+        Button replayButton = new Button("Replay");
+        replayButton.setEffect(dropShadow);
+        replayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                //stage.setScene(gameScene);
+                //player.setX(stage.getWidth()/2 - player.getWidth()/2);
+                //player.setY(stage.getHeight() - 80);
+                //crossyWorld.reset();
+            	//crossyWorld.addMap();
+                //stage.show();
+            }
+        });
+        
+        Button mainMenuButton = new Button("Main Menu");
+        mainMenuButton.setEffect(dropShadow);
+        mainMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                stage.setScene(titleScene);
+                player.setX(stage.getWidth()/2 - player.getWidth()/2);
+                player.setY(stage.getHeight() - 80);
+                crossyWorld.reset();
+            	crossyWorld.addMap();
+                stage.show();
+                rt.playFromStart();
+            }
+        });
+
+        b.setX(-200);
+        b.setY(-100);
+        gameOverText.setLayoutX(35);
+        gameOverText.setLayoutY(100);
+        scoreText.setLayoutX(40);
+        scoreText.setLayoutY(160);
+        replayButton.setLayoutX(120);
+        replayButton.setLayoutY(200);
+        mainMenuButton.setLayoutX(108);
+        mainMenuButton.setLayoutY(250);
+        
+        gameOverScreen.getChildren().addAll(b, gameOverText, scoreText, replayButton, mainMenuButton);
+
+        gameOverScene = new Scene(gameOverScreen);
+
+        rt.setNode(gameOverText);
+
+        
+        
         
         AnimationTimer mainLoop = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
                 if (stage.getScene() == (gameScene)) {
+                	/*for(Node actor : player.getWorld().getChildren()) {
+                		actor.setLayoutY(-0.1);
+                	}*/
                     if (crossyWorld.isGameOver()) {
-                    	ColorAdjust adj = new ColorAdjust(0, 0, 0, 0);
-                        GaussianBlur blur = new GaussianBlur(10);
-                        adj.setInput(blur);
-                        crossyWorld.setEffect(adj);
-                        
-                        try {
-                            for (Node actor: player.getWorld().getChildren()) {
-                                if(actor instanceof MovingObstacle) {
-                                    ((MovingObstacle)actor).setOver();
-                                }
-                            }
-                        } catch (ConcurrentModificationException e) {
-
-                        }
-                        
-                        Text scoreText = new Text("Your score was: " + score + "!");
-                        scoreText.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-                        scoreText.setFill(Color.WHITE);
-                        scoreText.setX(45);
-                        scoreText.setY(75);
-                        
-                        Button replayButton = new Button("Replay");
-                        replayButton.setEffect(dropShadow);
-                        replayButton.setLayoutX(60);
-                        replayButton.setLayoutY(200);
-                        replayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent t) {
-                            	crossyWorldScene.getChildren().remove(scoreText);
-                            	crossyWorldScene.getChildren().remove(replayButton);
-                                crossyWorld.reset();
-                                stage.show();
-
-                            }
-                        });
-                        
-                        crossyWorldScene.getChildren().addAll(scoreText, replayButton);
+                    	stage.setScene(gameOverScene);
+                        stage.show();
+                        rt.playFromStart();
                     }
                 }
             }
