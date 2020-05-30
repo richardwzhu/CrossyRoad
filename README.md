@@ -83,5 +83,11 @@ Work accomplished:  Today, I was able to properly display my map (grass, roads, 
 Goal:  Complete game logic and player interaction with log, add score counting, improve collision detecting, add/finish scene switching.
 
 Work accomplished:  First, I attempted to optimize my collision detecting mechanism (character against stationary and moving obstacles). I tried a few different approaches, all of which I committed to GitHub before scrapping (if it didn't work), just in case I were to return to the idea. I ended up improving marginally on my prior detecting method. I also finished my character - obstacle interactions after coding the character and river/log interaction. I added score counting during the running game, however, my game over page still doesn't display to correct final score. I also added a proper instruction scene and game over scene. My game over scene's 'back to main menu' button works, however, the 'replay' button is only somewhat functional.
+
+**Friday May 29 (3 hours)**
+
+Goal:  Finish and polish all game mechanics, fix scene switching ('replay' button in game over scene) and score display, create scrolling effect (a continuous map).
+
+Work accomplished:  First, I resolved an issue with the game over screen not properly displaying the final score by re-organizing my game logic within the Game driver class. I then attempted to create a scrolling effect similar to the one in the Crossy Road app, however, I had no success doing this. My solution to this issue was to reset the player to the bottom of the map (maintaining the same x-pos) after they reached the top of the current map and generate a new map, creating a 'continuous' map feel. I ran into some issues with the score and player not showing up on the new map, but utilizng the toFront() method quickly resolved this problem. The toFront() method also improved my overall gameplay by allowing the character to constantly appear on top of the moving obstacles (logs, cars), which is more realistic. I also managed to fix my 'replay' button to correctly reset and generate a new map by tracing and debugging my code (it was awfully tedious).
 ***
 ***
