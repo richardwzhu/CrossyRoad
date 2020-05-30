@@ -216,14 +216,20 @@ public class Game extends Application {
         replayButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                stage.setScene(gameScene);
+            	stage.setScene(gameScene);
+                crossyWorld.reset();
+                crossyWorld.addMap();
+                crossyWorld.getScore().setScore(0);
                 player.setX(stage.getWidth()/2 - player.getWidth()/2);
                 player.setY(stage.getHeight() - 80);
-                crossyWorld.reset();
-            	crossyWorld.addMap();
+                player.toFront();
+                crossyWorld.getScore().toFront();
+                crossyWorld.setGameOver(false);
                 stage.show();
+                
             }
         });
+        
         
         Button mainMenuButton = new Button("Main Menu");
         mainMenuButton.setEffect(dropShadow);
@@ -231,12 +237,15 @@ public class Game extends Application {
             @Override
             public void handle(MouseEvent t) {
                 stage.setScene(titleScene);
+                crossyWorld.reset();
+                crossyWorld.addMap();
+                crossyWorld.getScore().setScore(0);
                 player.setX(stage.getWidth()/2 - player.getWidth()/2);
                 player.setY(stage.getHeight() - 80);
-                //crossyWorld.reset();
-            	crossyWorld.addMap();
+                player.toFront();
+                crossyWorld.getScore().toFront();
+                crossyWorld.setGameOver(false);
                 stage.show();
-                rt.playFromStart();
             }
         });
 
@@ -255,8 +264,6 @@ public class Game extends Application {
 
         gameOverScene = new Scene(gameOverScreen);
 
-        rt.setNode(gameOverText);
-
         
         
         
@@ -269,24 +276,14 @@ public class Game extends Application {
                     	scoreText.setText("Your Score Was " + crossyWorld.getScore().getScore() + "!");
                     	stage.setScene(gameOverScene);
                         stage.show();
-                        rt.playFromStart();
                     }
                     if (crossyWorld.isLevelCleared()) {
-                    	/*for(Node actor : player.getWorld().getChildren()) {
-                        	if(actor instanceof Character) {
-                        		player.getWorld().getChildren().remove(actor);
-                        	}
-                        	if(actor instanceof Score) {
-                        		player.getWorld().getChildren().remove(actor);
-                        	}
-                        }*/
                         crossyWorld.cont();
                         crossyWorld.addMap();
                         player.setX(stage.getWidth()/2 - player.getWidth()/2);
                         player.setY(stage.getHeight() - 80);
                         player.toFront();
                         crossyWorld.getScore().toFront();
-                        //player.getWorld().getChildren().addAll(player, crossyWorld.getScore());
                         crossyWorld.setLevelCleared(false);
                     }
                 }

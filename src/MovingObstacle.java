@@ -50,10 +50,6 @@ public class MovingObstacle extends Actor{
 		return type;
 	}
 	
-	public void setOver() {
-		dx = 0;
-	}
-	
 	@Override
 	public void act(long now) {
 		move(dx, 0);

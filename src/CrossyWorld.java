@@ -62,25 +62,12 @@ public class CrossyWorld extends World{
 	}
 
 	public void reset() {
-		setGameOver(false);
-		for(int i = 0; i < map.size(); i++) {
-			map.remove(i);
-		}
-		for(Node actor : this.getChildren()) {
-			if(actor instanceof StationaryObstacle || actor instanceof MovingObstacle) {
-				this.remove((Actor)actor);
-			}
-		}
+		map.clear();
 		addMap();
-		score.setScore(0);
-		score.updateDisplay();
-		score.toFront();
 	}
 	
 	public void cont() {
-		for(int i = 0; i < map.size(); i++) {
-			map.remove(i);
-		}
+		map.clear();
 		for(Node actor : this.getChildren()) {
 			if(actor instanceof StationaryObstacle || actor instanceof MovingObstacle) {
 				this.remove((Actor)actor);
