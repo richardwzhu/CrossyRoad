@@ -278,9 +278,10 @@ public class Game extends Application {
                         stage.show();
                     }
                     if (crossyWorld.isLevelCleared()) {
+                    	double xPos = player.getX();
                         crossyWorld.cont();
                         crossyWorld.addMap();
-                        player.setX(stage.getWidth()/2 - player.getWidth()/2);
+                        player.setX(xPos);
                         player.setY(stage.getHeight() - 80);
                         player.toFront();
                         crossyWorld.getScore().toFront();
